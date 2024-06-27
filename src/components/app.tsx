@@ -4,6 +4,7 @@ import Home from "./home";
 import About from "./about";
 import Layout from "./layout";
 import "../styles/global.css";
+import HackerNews from "./hacker-news";
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/products" element={<About />} />
           <Route path="/about" element={<About />} />
-          <Route path="/careers" element={<About />} />
+          <Route path="/hacker-news" element={<HackerNews />} />
         </Route>
       </Routes>
     </BrowserRouter>
