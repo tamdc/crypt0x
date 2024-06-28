@@ -1,33 +1,14 @@
-import axios from "axios";
-import React, { useState } from "react";
-import debounce from "../utils/debounce";
-
-interface HNResultItem {
-  title: string;
-  url: string;
-  author: string;
-  story_id: number;
-}
-interface HNSearchRes {
-  data: {
-    hits: HNResultItem[];
-  };
-}
+import React, { useEffect, useState } from "react";
+import useFetchHn from "../utils/useFetchHn";
 
 const hnSearhcApi = "https://hn.algolia.com/api/v1/search";
 const HackerNews = () => {
-  const [q, setQ] = React.useState<string>("redux");
-  const [result, setResult] = useState<HNResultItem[]>([]);
+  const [q, setQ] = useState<string>("react");
+  const [data, setUrl] = useFetchHn(`${hnSearhcApi}?query=${q}`);
 
-  React.useEffect(() => {
-    let timer;
-    const fetchData = async () => {
-      const response: HNSearchRes = await axios(`${hnSearhcApi}?query=${q}`);
-      const hits = response.data.hits || [];
-      setResult(hits);
-    };
-    timer = setTimeout(() => {
-      fetchData();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setUrl(`${hnSearhcApi}?query=${q}`);
     }, 500);
     return () => clearTimeout(timer);
   }, [q]);
@@ -42,8 +23,8 @@ const HackerNews = () => {
         />
       </div>
       <ul>
-        {result.map(({ title, url, story_id }) => (
-          <li key={story_id}>
+        {data.map(({ title, url }, idx) => (
+          <li key={`${title}-${idx}`}>
             <a target="_blank" href={url}>
               {title}
             </a>
