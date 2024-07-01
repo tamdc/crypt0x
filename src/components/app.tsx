@@ -5,6 +5,7 @@ import About from "./about";
 import Layout from "./layout";
 import "../styles/global.css";
 import HackerNews from "./hacker-news";
+import CEXs from "./cexs";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/products" element={<About />} />
           <Route path="/about" element={<About />} />
           <Route path="/hacker-news" element={<HackerNews />} />
+          <Route path="/cex" element={<CEXs />} />
         </Route>
       </Routes>
     </BrowserRouter>
