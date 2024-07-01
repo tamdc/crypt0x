@@ -9,13 +9,14 @@ app.use(cors());
 app.get("/api", (req, res) => {
   try {
     axios
-      .get(`https://pro-api.coinmarketcap.com/v1/exchange/listings/latest`, {
+      .get(`https://pro-api.coinmarketcap.com/v1/exchange/map`, {
         headers: {
           "X-CMC_PRO_API_KEY": "c3ab96c5-c6ae-4040-8c23-1b50ff311139",
         },
       })
-      .then((res) => {
-        res.json({ data: res });
+      .then((data) => {
+        console.log(data.data);
+        res.json({ data: data.data });
       });
   } catch (error) {
     res.json({ data: error });
