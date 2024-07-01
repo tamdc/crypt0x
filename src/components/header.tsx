@@ -11,8 +11,8 @@ const Header = () => {
       </div>
       <nav className="navbar--wrapper">
         <Link to="/products">Sản phẩm</Link>
-        <Link to="/about">Về chúng tôi</Link>
-        <Link to="/hacker-news">Tin tức</Link>
+        <Link to="/cex">CEXs</Link>
+        <Link to="/hacker-news">Hacker News</Link>
       </nav>
     </div>
   );
