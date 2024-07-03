@@ -8,13 +8,10 @@ app.use(cors());
 app.get("/api", (req, res) => {
   try {
     axios
-      .get(`https:/api.coingecko.com/api/v3/ping`, {
+      .get(`https:/api.coingecko.com/api/v3/exchanges`, {
         headers: {
-          "x-cg-demo-api-key": "c3ab96c5-c6ae-4040-8c23-1b50ff311139",
-        },
-        data: {
-          id: "270",
-          slug: "binance",
+          "x-cg-demo-api-key": "CG-FJhnGRYLLqUPbfE5WBPkRcdW",
+          accept: "application/json",
         },
       })
       .then((data) => {
