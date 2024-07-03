@@ -5,7 +5,7 @@ const PORT = 3001;
 
 const app = express();
 app.use(cors());
-app.get("/api", (req, res) => {
+app.get("/api/exchanges", (req, res) => {
   try {
     axios
       .get(`https:/api.coingecko.com/api/v3/exchanges`, {
@@ -15,7 +15,6 @@ app.get("/api", (req, res) => {
         },
       })
       .then((data) => {
-        console.log(data);
         res.json({ data: data.data });
       });
   } catch (error) {
