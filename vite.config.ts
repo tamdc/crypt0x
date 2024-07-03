@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import babel from "vite-plugin-babel";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   root: "src",
@@ -12,12 +12,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [
-    babel({
-      babelConfig: {
-        presets: ["@babel/preset-react"],
-      },
-      exclude: /node_modules/,
-    }),
-  ],
+  plugins: [react()],
 });
