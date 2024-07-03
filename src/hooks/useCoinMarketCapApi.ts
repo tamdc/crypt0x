@@ -1,5 +1,6 @@
 import axios from "axios";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
+import { ApiResponse, ExchangeInfo } from "../types";
 
 type State = {
   data: any;
@@ -12,36 +13,41 @@ type Action = {
   payload?: any;
 };
 
-type Status = "CMC_FETCHING" | "CMC_SUCCESS" | "CMC_FAIL";
+type Status = "CG_FETCHING" | "CG_SUCCESS" | "CG_FAIL";
 
 const fetchCMCReducer = (state: State, action: Action) => {
   switch (action.type) {
-    case "CMC_FETCHING":
+    case "CG_FETCHING":
       return { ...state, isLoading: true, isError: false };
-    case "CMC_SUCCESS":
+    case "CG_SUCCESS":
       return { data: action.payload, isLoading: false, isError: false };
-    case "CMC_FAIL":
+    case "CG_FAIL":
       return { ...state, isLoading: false, isError: true };
     default:
       return state;
   }
 };
 
-const useCoinMarketCapApi = (initUrl: string, initData: State) => {
+const useCoinMarketCapApi = (
+  initUrl: string,
+  initData: State
+): [State, Dispatch<SetStateAction<string>>] => {
   const [state, dispatch] = React.useReducer(fetchCMCReducer, initData);
   const [url, setUrl] = React.useState(initUrl);
 
   React.useEffect(() => {
     let didCancel = false;
     const fetchCMCApi = async () => {
-      dispatch({ type: "CMC_FETCHING" });
+      dispatch({ type: "CG_FETCHING" });
       try {
-        const response = await axios("/api");
+        const response: ApiResponse<{ data: ExchangeInfo[] }> = await axios(
+          "/api/exchanges"
+        );
 
         if (!didCancel)
-          dispatch({ type: "CMC_SUCCESS", payload: response.data });
+          dispatch({ type: "CG_SUCCESS", payload: response?.data?.data });
       } catch (error) {
-        if (!didCancel) dispatch({ type: "CMC_FAIL" });
+        if (!didCancel) dispatch({ type: "CG_FAIL" });
       }
     };
 
