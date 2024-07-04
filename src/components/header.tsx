@@ -1,11 +1,11 @@
 import React from "react";
-import logo from "../assets/logo.webp";
+import logo from "@/assets/images/logo.webp";
 import "../styles/header.css";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../context/authentication";
 
 const Header = () => {
-  const { token, logout, login } = useAuth();
+  const { token, logout } = useAuth();
   return (
     <div className="header">
       <div className="logo--wrapper">

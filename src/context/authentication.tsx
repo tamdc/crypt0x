@@ -32,8 +32,13 @@ const AuthProvider: FunctionComponent<{ children: any }> = ({ children }) => {
     username: string;
     password: string;
   }) => {
-    const token = await fakeAuth({ username, password });
-    setToken(token);
+    try {
+      const token = await fakeAuth({ username, password });
+      setToken(token);
+      return true;
+    } catch (error) {
+      return false;
+    }
   };
 
   const handleLogout = () => {
