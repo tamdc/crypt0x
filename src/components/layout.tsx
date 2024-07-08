@@ -6,13 +6,11 @@ import "../styles/layout.css";
 
 const Layout = () => {
   return (
-    <>
+    <div className="bg-white">
       <Header />
-      <main>
-        <Outlet />
-      </main>
-      <Footer />
-    </>
+      <Outlet />
+      {/* <Footer /> */}
+    </div>
   );
 };
 

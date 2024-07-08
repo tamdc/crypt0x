@@ -70,16 +70,16 @@ const Header = () => {
   const { token, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
-    <header className="bg-white">
+    <header className="absolute inset-x-0 top-0 z-10">
       <nav
         aria-label="Global"
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       >
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Crypt0x</span>
             <img alt="logo" src={logo} className="h-8 w-auto" />
-          </a>
+          </Link>
         </div>
 
         <div className="flex lg:hidden">
