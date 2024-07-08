@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import logo from "@/assets/images/logo.webp";
-import { Link, NavLink } from "react-router-dom";
-import { useAuth } from "../context/authentication";
+import { Link } from "react-router-dom";
 import {
   ArrowPathIcon,
   Bars3Icon,
@@ -67,7 +66,6 @@ const callsToAction = [
 ];
 
 const Header = () => {
-  const { token, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <header className="absolute inset-x-0 top-0 z-10">
